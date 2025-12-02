@@ -25,17 +25,17 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
     server_socket.bind((HOST, PORT))
     server_socket.listen()
 
-    print(f"Server is listening on {HOST}:{PORT}")
+    print("Server is listening on",HOST,PORT)
     while True:
         conn, addr = server_socket.accept()
         with conn:
-            print(f"Connected by {addr}")
+            print("Connected by",addr)
             while True:
                 data = conn.recv(1024)
                 if not data:
                     break
                 conn.sendall(data)
-                print(f"Echoed: {data.decode('utf-8')}")
+                print("Echoed: ",data.decode('utf-8'))
 ```
 
 ### Client :
@@ -53,7 +53,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
     client_socket.sendall(message.encode('utf-8'))
 
     data = client_socket.recv(1024)
-    print(f"Received echo: {data.decode('utf-8')}")
+    print(f"Received echo: ",data.decode('utf-8'))
 
 ```
 ## OUPUT:
